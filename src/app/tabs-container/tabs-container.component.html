@@ -1,0 +1,6 @@
+<p>tabs-container works!</p>
+
+<ng-container *ngFor="let tab of tabList">
+  <button (click)="openTab(tab)" class="p-3 mr-1">{{tab.name}}</button>
+</ng-container>
+<app-tabs></app-tabs>

@@ -1,0 +1,33 @@
+<ul
+  ngbNav
+  #nav="ngbNav"
+  [(activeId)]="activeTabId"
+  class="nav-tabs"
+  (navChange)="changeActiveTab($event)"
+>
+  <li [ngbNavItem]="'tab.id'">
+    <a ngbNavLink>
+      <span>Tab</span>
+      <span class="btn-close ms-2 fw-light"></span>
+    </a>
+  </li>
+  <ng-container *ngFor="let tab of activeTabs">
+    <li [ngbNavItem]="tab.id">
+      <a ngbNavLink>
+        <span>Tab {{ tab.id }}</span>
+        <span
+          class="btn-close ms-2 fw-light"
+          (click)="closeTab($event, tab)"
+        ></span>
+      </a>
+    </li>
+  </ng-container>
+</ul>
+
+<ng-container *ngFor="let tab of activeTabs">
+  <app-tab
+    [tab]="tab"
+    [hidden]="tab.id !== activeTabId"
+    (closeTab)="closeTab(null, $event)"
+  ></app-tab>
+</ng-container>
